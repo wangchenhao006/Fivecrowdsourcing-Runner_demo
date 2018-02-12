@@ -7,9 +7,9 @@
 
 注册一个已有数据：
 
- ![Alt text](https://github.com/wangchenhao006/Fivecrowdsourcing-Runner_demo/Screenshots/1.png)
+ ![屠龙宝刀，点击就送](https://github.com/wangchenhao006/Fivecrowdsourcing-Runner_demo/raw/master/Screenshots/1.png)
 登录：
- ![Alt text](https://github.com/wangchenhao006/Fivecrowdsourcing-Runner_demo/Screenshots/2.png)
+ ![屠龙宝刀，点击就送](https://github.com/wangchenhao006/Fivecrowdsourcing-Runner_demo/raw/master/Screenshots/2.png)
 注册一个未有的数据：
- ![Alt text](https://github.com/wangchenhao006/Fivecrowdsourcing-Runner_demo/Screenshots/3.png)
+ ![屠龙宝刀，点击就送](https://github.com/wangchenhao006/Fivecrowdsourcing-Runner_demo/raw/master/Screenshots/3.png)
 

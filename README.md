@@ -16,3 +16,5 @@ android文件夹中是安卓端，servlet文件夹是后台代码。
 注册一个未有的数据：
  ![屠龙宝刀，点击就送](https://github.com/wangchenhao006/Fivecrowdsourcing-Runner_demo/raw/master/android/Screenshots/3.png)
 
+2018/2/16
+数据格式使用JSON，安卓与服务器的交互格式用自建的类，将之前的doGet改成doPost，网络连接采用AsyncTask。

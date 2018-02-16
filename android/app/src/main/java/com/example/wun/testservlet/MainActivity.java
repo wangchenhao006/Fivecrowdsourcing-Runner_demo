@@ -5,6 +5,8 @@ import java.io.*;
 import java.net.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Iterator;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,7 +18,7 @@ import android.widget.Button;
 
 import  android.util.Log;
 
-
+import  org.json.*;
 
 public class MainActivity extends AppCompatActivity  {
 
@@ -24,6 +26,7 @@ public class MainActivity extends AppCompatActivity  {
     private EditText etPassword;
     private TextView tvResult;
 
+    public HashMap<String, String> requestParam =new HashMap<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,12 +75,20 @@ public class MainActivity extends AppCompatActivity  {
 
     private void register(String account, String password) {
         String registerUrlStr = DataConfig.URL_Register + "?account=" + account + "&password=" + password;
-        new MyAsyncTask(tvResult).execute(registerUrlStr);
+        Log.e("register Input:",account+" "+password);
+        requestParam.put("password",password);
+        requestParam.put("account",account);
+
+        new MyAsyncTask(tvResult,requestParam).execute(registerUrlStr);
     }
 
     private void login(String account, String password) {
         String loginUrlStr = DataConfig.URL_Login + "?account=" + account + "&password=" + password;
-        new MyAsyncTask(tvResult).execute(loginUrlStr);
+        Log.e("login Input",account+" "+password);
+        requestParam.put("password",password);
+        requestParam.put("account",account);
+
+        new MyAsyncTask(tvResult,requestParam).execute(loginUrlStr);
     }
 
     /**
@@ -89,9 +100,12 @@ public class MainActivity extends AppCompatActivity  {
     public static class MyAsyncTask extends AsyncTask<String, Integer, String> {
 
         private TextView tv; // 举例一个UI元素，后边会用到
+        HashMap<String,String> requestParam;
+        private HashMap<String, String> propertyMap;
 
-        public MyAsyncTask(TextView v) {
+        public MyAsyncTask(TextView v,HashMap<String,String> requestParam) {
             tv = v;
+            this.requestParam=requestParam;
         }
 
         @Override
@@ -104,15 +118,29 @@ public class MainActivity extends AppCompatActivity  {
          */
         @Override
         protected String doInBackground(String... params) {
-            Log.w("WangJ", "task doInBackground()");
+            Log.w("Wang", "task doInBackground()");
             HttpURLConnection connection = null;
             StringBuilder response = new StringBuilder();
             try {
                 URL url = new URL(params[0]); // 声明一个URL,注意如果用百度首页实验，请使用https开头，否则获取不到返回报文
+               System.out.println("params 0 :"+params[0]);
+
                 connection = (HttpURLConnection) url.openConnection(); // 打开该URL连接
-                connection.setRequestMethod("GET"); // 设置请求方法，“POST或GET”，我们这里用GET，在说到POST的时候再用POST
+
+                connection.setRequestMethod("POST"); // 设置请求方法，“POST或GET”，我们这里用GET，在说到POST的时候再用POST
                 connection.setConnectTimeout(80000); // 设置连接建立的超时时间
                 connection.setReadTimeout(80000); // 设置网络报文收发超时时间
+
+                // 如果是POST方法，需要在第3步获取输入流之前向连接写入POST参数
+                DataOutputStream out = new DataOutputStream(connection.getOutputStream()); // 在此之前也可以用connection.getResponseCode()获取返回码，看是否为200
+
+                //请求报文组装
+                JSONObject object = new JSONObject();
+                object.put("requestParam", requestParam);
+                Log.e("JSON",object.toString());
+                //String param = "account=wang&password=jie"; // 这里我们先模拟一个参数列表
+                out.writeBytes(object.toString());
+
                 InputStream in = connection.getInputStream();  // 通过连接的输入流获取下发报文，然后就是Java的流处理
                 BufferedReader reader = new BufferedReader(new InputStreamReader(in));
                 String line;
@@ -122,6 +150,8 @@ public class MainActivity extends AppCompatActivity  {
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (IOException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
                 e.printStackTrace();
             }
             return response.toString(); // 这里返回的结果就作为onPostExecute方法的入参
@@ -135,12 +165,52 @@ public class MainActivity extends AppCompatActivity  {
 
         /**
          * 运行在UI线程中，所以可以直接操作UI元素
-         * @param s
+         * @param
          */
         @Override
-        protected void onPostExecute(String s) {
-            Log.w("Wang", "task onPostExecute()");
-            tv.setText(s);
+        protected void onPostExecute(String result) {
+            if (!"".equals(result)) {
+
+                //LogUtil.logResponse(result); // 日志输出原始应答报文
+                System.out.println(result);
+
+                try {
+                    JSONObject root = new JSONObject(result); // 此处就可以将服务端返回的Json的字符串还原成Json格式的数据
+                    // 下边就可以根据需求将Json转化合适的数据结构来使用了
+                    // ... ...自己的业务逻辑
+                    String resCode = root.getString("resCode");
+                    String resMsg = root.optString("resMsg");
+                    System.out.println("resCode:"+resCode+"resMsg:"+resMsg);
+                    JSONObject property = root.optJSONObject("property");
+
+                    if (property != null) {
+                        parseProperty(property,propertyMap);
+                    }
+
+
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                Log.e("Wang", "结果为空！");
+            }
+        }
+        /**
+         * 简单信息部分的解析到
+         *
+         * @param property  信息部分
+         * @param targetMap 解析后保存目标
+         */
+        private void parseProperty(JSONObject property, HashMap<String, String> targetMap) {
+            Iterator<?> it = property.keys();
+            while (it.hasNext()) {
+                String key = it.next().toString();
+                Object value = property.opt(key);
+                targetMap.put(key, value.toString());
+                System.out.println("key:"+key+"value:"+value);
+            }
         }
 
     }

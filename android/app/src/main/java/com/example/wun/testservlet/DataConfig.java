@@ -7,7 +7,9 @@ package com.example.wun.testservlet;
 
 public class DataConfig {
     public static String URL = "http://192.168.1.10:8080/runnerTomcat/"; // IP地址请改为你自己的IP
-
+    //public static String URL = "http://192.168.1.10:8080/MyWorld_Service/";
+    //public static String URL_Register = URL + "runnerRegister";
     public static String URL_Register = URL + "runnerRegister";
     public static String URL_Login = URL + "runnerLogin";
+    //public static String URL_Login = URL + "LoginServlet";
 }

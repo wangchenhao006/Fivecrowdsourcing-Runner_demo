@@ -138,7 +138,7 @@ public class MainActivity extends AppCompatActivity  {
                 JSONObject object = new JSONObject();
                 object.put("requestParam", requestParam);
                 Log.e("JSON",object.toString());
-                //String param = "account=wang&password=jie"; // 这里我们先模拟一个参数列表
+                    //String param = "account=wang&password=jie"; // 这里我们先模拟一个参数列表
                 out.writeBytes(object.toString());
 
                 InputStream in = connection.getInputStream();  // 通过连接的输入流获取下发报文，然后就是Java的流处理

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/id_et_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:hint="请输入账号" />
+
+    <EditText
+        android:id="@+id/id_et_password"
+        style="@style/Widget.AppCompat.EditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:hint="请输入登录密码"
+        android:inputType="textPassword"
+        android:selectAllOnFocus="false"
+        android:singleLine="false" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/id_btn_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Register" />
+
+        <Button
+            android:id="@+id/id_btn_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Login" />
+
+    </LinearLayout>
+
+    <!-- 用来显示报文返回结果 -->
+<TextView
+android:id="@+id/tv_result"
+android:layout_width="match_parent"
+android:layout_height="wrap_content" />
+
+    <ProgressBar
+        android:id="@+id/id_pb_loading"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
+

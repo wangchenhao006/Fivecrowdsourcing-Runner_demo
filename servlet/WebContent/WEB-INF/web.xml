@@ -1,12 +1,137 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
-  <display-name>runnerTomcat</display-name>
-  <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
-  </welcome-file-list>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>validateAMerchantServlet</servlet-name>
+    <servlet-class>com.validate.validateAMerchantServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>insertIntoValidatedList</servlet-name>
+    <servlet-class>com.validate.insertIntoValidatedList</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>ValidatedRunnerList</servlet-name>
+    <servlet-class>com.validate.ValidatedRunnerList</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>validateRunnerServlet</servlet-name>
+    <servlet-class>com.validate.validateRunnerServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>validateARunnerServlet</servlet-name>
+    <servlet-class>com.validate.validateARunnerServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>insertValidatedRunner</servlet-name>
+    <servlet-class>com.validate.insertValidatedRunner</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>WeatherServlet</servlet-name>
+    <servlet-class>com.calculate.WeatherServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>insertValidatedMerchants</servlet-name>
+    <servlet-class>com.validate.insertValidatedMerchants</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>taskAccount</servlet-name>
+    <servlet-class>com.pay.taskAccount</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Comment</servlet-name>
+    <servlet-class>com.pay.Comment</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>PayBills</servlet-name>
+    <servlet-class>com.pay.PayBills</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>FinishedTasks</servlet-name>
+    <servlet-class>com.pay.FinishedTasks</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>validateAMerchantServlet</servlet-name>
+    <url-pattern>/merchant_profile.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>insertIntoValidatedList</servlet-name>
+    <url-pattern>/addValidated.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>WeatherServlet</servlet-name>
+    <url-pattern>/weather.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>insertValidatedMerchants</servlet-name>
+    <url-pattern>/merchants.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>insertIntoValidatedList</servlet-name>
+    <url-pattern>/addvalidated.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ValidatedRunnerList</servlet-name>
+    <url-pattern>/runner/addrunnervalidated.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>validateRunnerServlet</servlet-name>
+    <url-pattern>/runner/validaterunner.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>validateARunnerServlet</servlet-name>
+    <url-pattern>/runner/runner_profile.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>insertValidatedRunner</servlet-name>
+    <url-pattern>/runner/runner.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>taskAccount</servlet-name>
+    <url-pattern>/taskaccount.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Comment</servlet-name>
+    <url-pattern>/comment.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>PayBills</servlet-name>
+    <url-pattern>/pay.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>FinishedTasks</servlet-name>
+    <url-pattern>/finished.do</url-pattern>
+  </servlet-mapping>
+  <resource-env-ref>
+    <description>DataSource
+  </description>
+    <resource-env-ref-name>
+    jdbc/fivecrowdsourcing
+  </resource-env-ref-name>
+    <resource-env-ref-type>
+    javax.sql.DataSource
+  </resource-env-ref-type>
+  </resource-env-ref>
 </web-app>

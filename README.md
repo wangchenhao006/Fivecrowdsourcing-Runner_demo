@@ -1,5 +1,8 @@
 ﻿
 # Fivecrowdsourcing-Runner_demo
+！！！！！！！！！！！！！所有文件已移至仓库下android中！！！！！！！！！！！！！！！！！！！！！！！！！！！！
+
+
 android文件夹中是安卓端，servlet文件夹是后台代码。
 
 之前那个runner app段是根据别人代码改的，修改起来力不从心，所以重新独立写一个。7911 upup！
